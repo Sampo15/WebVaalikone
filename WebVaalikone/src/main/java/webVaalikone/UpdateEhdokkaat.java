@@ -45,7 +45,9 @@ public class UpdateEhdokkaat extends HttpServlet {
 		String edistaa=request.getParameter("edistaa");
 		String paikkakunta = request.getParameter("paikkakunta");
 		String vaalinro = request.getParameter("vaalinro");
-		Ehdokkaat ed = new Ehdokkaat(ehdokas_id, sukunimi, etunimi, puolue, eduskunta, edistaa, paikkakunta, vaalinro);
+		String ehduser = request.getParameter("ehduser");
+		String ehdpass = request.getParameter("ehdpass");
+		Ehdokkaat ed = new Ehdokkaat(ehdokas_id, sukunimi, etunimi, puolue, eduskunta, edistaa, paikkakunta, vaalinro, ehduser, ehdpass);
 		
 		ArrayList<Ehdokkaat> list=null;
 		if(dao.getConnection()) {

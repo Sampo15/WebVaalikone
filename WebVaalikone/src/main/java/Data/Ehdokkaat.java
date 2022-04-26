@@ -13,10 +13,23 @@ private float score;
 
 private String paikkakunta;
 private int vaalinro;
+private String ehduser;
+private String ehdpass;
 
 
-
-public Ehdokkaat(String ehdokas_id, String sukunimi, String etunimi, String puolue, String eduskunta, String edistaa, String paikkakunta, String vaalinro) {
+public String getEhduser() {
+	return ehduser;
+}
+public void setEhduser(String ehduser) {
+	this.ehduser = ehduser;
+}
+public String getEhdpass() {
+	return ehdpass;
+}
+public void setEhdpass(String ehdpass) {
+	this.ehdpass = ehdpass;
+}
+public Ehdokkaat(String ehdokas_id, String sukunimi, String etunimi, String puolue, String eduskunta, String edistaa, String paikkakunta, String vaalinro, String ehduser, String ehdpass) {
 	setEhdokas_id(ehdokas_id);
 	setVaalinro(vaalinro);
 	
@@ -26,7 +39,8 @@ public Ehdokkaat(String ehdokas_id, String sukunimi, String etunimi, String puol
 	this.eduskunta = eduskunta;
 	this.edistaa = edistaa;
 	this.paikkakunta = paikkakunta;
-	
+	this.ehduser = ehduser;
+	this.ehdpass = ehdpass;
 
 }
 public Ehdokkaat() {
