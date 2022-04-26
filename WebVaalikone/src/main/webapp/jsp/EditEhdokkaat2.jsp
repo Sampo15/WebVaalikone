@@ -61,6 +61,14 @@
 				name='edistaa' value='${requestScope.ehdokas.edistaa}'>
 		</div>
 		<div class="input-group">
+			<label>Muokkaa käyttäjätunnusta:</label> <input type='text' name='ehduser'
+				value='${requestScope.ehdokas.ehduser}'>
+		</div>
+		<div class="input-group">
+			<label>Muokkaa salasanaa:</label> <input type='text' name='ehdpass'
+				value='${requestScope.ehdokas.ehdpass}'>
+		</div>
+		<div class="input-group">
 			<input type='submit' name='ok' value='Muokkaa'>
 		</div>
 

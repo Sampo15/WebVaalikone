@@ -113,7 +113,8 @@ public class Dao {
 				ed.setEdistaa(rs.getString("MITA_ASIOITA_HALUAT_EDISTAA"));
 				ed.setPaikkakunta(rs.getString("KOTIPAIKKAKUNTA"));
 				ed.setVaalinro(rs.getInt("vaalinro"));
-
+				ed.setEhduser(rs.getString("ehduser"));
+				ed.setEhdpass(rs.getString("ehdpass"));
 				ehdokkaatlist.add(ed);
 			}
 			return ehdokkaatlist;
@@ -143,6 +144,8 @@ public class Dao {
 				ed.setEdistaa(rs.getString("MITA_ASIOITA_HALUAT_EDISTAA"));
 				ed.setPaikkakunta(rs.getString("KOTIPAIKKAKUNTA"));
 				ed.setVaalinro(rs.getInt("vaalinro"));
+				ed.setEhduser(rs.getString("ehduser"));
+				ed.setEhdpass(rs.getString("ehdpass"));
 			}
 			return ed;
 		} catch (SQLException e) {
@@ -154,7 +157,7 @@ public class Dao {
 	public ArrayList<Ehdokkaat> Muokkaehdokas(Ehdokkaat ed) {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(
-					"update ehdokkaat set sukunimi=?, etunimi=?, puolue=?, MIKSI_EDUSKUNTAAN=?, MITA_ASIOITA_HALUAT_EDISTAA=?, KOTIPAIKKAKUNTA=?, vaalinro=? where ehdokas_id=?");
+					"update ehdokkaat set sukunimi=?, etunimi=?, puolue=?, MIKSI_EDUSKUNTAAN=?, MITA_ASIOITA_HALUAT_EDISTAA=?, KOTIPAIKKAKUNTA=?, vaalinro=?,ehduser=?,ehdpass=? where ehdokas_id=?");
 
 			pstmt.setString(1, ed.getSukunimi());
 			pstmt.setString(2, ed.getEtunimi());
@@ -163,8 +166,10 @@ public class Dao {
 			pstmt.setString(5, ed.getEdistaa());
 			pstmt.setString(6, ed.getPaikkakunta());
 			pstmt.setInt(7, ed.getVaalinro());
-			pstmt.setInt(8, ed.getEhdokas_id());
-
+			pstmt.setString(8, ed.getEhduser());
+			pstmt.setString(9, ed.getEhdpass());
+			pstmt.setInt(10, ed.getEhdokas_id());
+			
 			pstmt.executeUpdate();
 			return lueEhdokkaat();
 
@@ -191,7 +196,7 @@ public class Dao {
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(
-					"insert into ehdokkaat (sukunimi, etunimi, puolue, MIKSI_EDUSKUNTAAN, MITA_ASIOITA_HALUAT_EDISTAA, KOTIPAIKKAKUNTA, vaalinro) values (?,?,?,?,?,?,?)");
+					"insert into ehdokkaat (sukunimi, etunimi, puolue, MIKSI_EDUSKUNTAAN, MITA_ASIOITA_HALUAT_EDISTAA, KOTIPAIKKAKUNTA, vaalinro, ehduser, ehdpass) values (?,?,?,?,?,?,?,?,?)");
 
 			pstmt.setString(1, ed.getSukunimi());
 			pstmt.setString(2, ed.getEtunimi());
@@ -200,6 +205,8 @@ public class Dao {
 			pstmt.setString(5, ed.getEdistaa());
 			pstmt.setString(6, ed.getPaikkakunta());
 			pstmt.setInt(7, ed.getVaalinro());
+			pstmt.setString(8, ed.getEhduser());
+			pstmt.setString(9, ed.getEhdpass());
 
 			pstmt.executeUpdate();
 			pstmt = conn.prepareStatement(
