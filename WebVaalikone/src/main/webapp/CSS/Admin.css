@@ -1,0 +1,131 @@
+@charset "ISO-8859-1";
+body{
+	
+	margin-top: 40px;
+	color: white;
+	background-color:#a6acaf;
+	background-image: url(/img/kysymykset.jpg);
+	background-position: center;
+    background-repeat: repeat;
+    background-color: #21213c;
+    background-size: cover;
+    height: 900px;
+	text-align:center;
+}
+.h1{
+	color: white;
+}
+.loginform{
+    position: absolute;
+    top: 45%;
+    left:50%;
+    transform: translate(-50%, -55%);
+    
+   margin-top: 35px;
+   
+   
+   box-shadow: 20px 20px 50px rgba(0, 0 ,0 , 0.5);
+   background: rgba(255, 255, 255, 0.1);
+   width: 60vh;
+   height: 30vh;
+   text-align: center;
+   justify-content: center;
+   align-items: center;
+   border-top: 1px solid rgba(255, 255, 255, 0.5);
+   border-left: 1px solid rgba(255, 255, 255, 0.5);
+   backdrop-filter: blur(5px);
+} 
+
+.button {
+  background-color: #67b7b6;
+  padding: 8px;
+  width: 165px;
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  margin-top: 45px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+.button2 {
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-weight: bold;
+  margin-top: 650px;
+  padding: 7px;
+  width: 150px;
+  background-color: transparent;
+  border: 1px solid #67b7b6;
+  }
+.nappi {
+  margin-top: 15px;
+  background-color: #67b7b6;
+  padding: 8px;
+  width: 155px;
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-weight: bold;
+}
+
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+.Ehdokkaat {
+	color: white;
+	margin-top: 15px;
+}
+  form, .content {
+	color: white;
+    width: 30%;
+    margin: 0px auto;
+    padding: 20px;
+    border: 1px solid #5b5c5e;
+   background: rgba(255, 255, 255, 0.1);
+    border-radius: 0px 0px 10px 10px;
+  }
+  .input-group {
+    margin: 10px 0px 10px 0px;
+  }
+  .input-group label {
+    display: block;
+    text-align: left;
+    margin: 3px;
+  }
+  .input-group input {
+    height: 30px;
+    width: 93%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+ 
