@@ -52,6 +52,12 @@
 			<textarea type="text" name="edistaa" cols="50" rows="5" required></textarea>
 		</div>
 		<div class="input-group">
+			<label>Lisää käyttäjätunnus</label> <input type="text" name="ehduser" required>
+		</div>
+		<div class="input-group">
+			<label>Lisää salasana</label> <input type="text" name="ehdpass" required>
+		</div>
+		<div class="input-group">
 			<input type='submit' name='ok' value='Lisää ehdokas'>
 		</div>
 
