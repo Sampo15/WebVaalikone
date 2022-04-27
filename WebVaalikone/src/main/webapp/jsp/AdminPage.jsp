@@ -31,6 +31,13 @@
 			<button class="button">Poista ehdokas</button>
 		</a>
 	</div>
+	<div>
+		
+<form action='../readkysymys' method='get'>
+
+<input class="button "type='submit' name='ok' value='Muokkaa kysymyksiä'>
+</form>
+	</div>
 	<a href='/index.html'>
 		<button class="button button2">Poistu</button>
 	</a>

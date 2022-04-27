@@ -55,6 +55,30 @@
 <version>2.0.4</version>
 </dependency>
 
+<!-- This dependency is needed for annotations (e.g. @Path, @Consumes, @Produces etc.) in the REST-class-->
+	<dependency>
+	    <groupId>org.glassfish.jersey.media</groupId>
+	    <artifactId>jersey-media-json-jackson</artifactId>
+	    <version>2.27</version>
+	</dependency>
+
+<!-- This is needed that your server can handle REST-class as a servlet.
+		e.g. the class org.glassfish.jersey.servlet.ServletContainer 
+		in the project's web.xml file can be found from this library --> 
+	<dependency>
+		<groupId>org.glassfish.jersey.containers</groupId>
+		<artifactId>jersey-container-servlet</artifactId>
+		<version>2.27</version>
+	</dependency>
+
+<!-- This is needed because of injections  - server can inject our extra classes into resource -->	
+	<dependency>
+		<groupId>org.glassfish.jersey.inject</groupId>
+		<artifactId>jersey-hk2</artifactId>
+		<version>2.27</version>
+	</dependency>
+
+
 <!-- BEGIN: Added by Pena -->
         
 
