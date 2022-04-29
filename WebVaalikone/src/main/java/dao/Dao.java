@@ -53,6 +53,7 @@ public class Dao {
 			while (rs.next()) {
 				Kysymys k = new Kysymys();
 				k.setKysymys(rs.getString("kysymys"));
+				k.setId(rs.getInt("kysymys_id"));
 				list.add(k);
 			}
 			return list;

@@ -17,6 +17,9 @@ public class Kysymykset {
 public Kysymykset(String kysymys){
 		this.kysymys = kysymys;
 	}
+public Kysymykset(int kysymys_id){
+	this.kysymys_id = kysymys_id;
+}
 	
 	public Kysymykset(int kysymys_id, String kysymys) {
 		this.kysymys_id = kysymys_id;
