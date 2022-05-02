@@ -24,6 +24,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import Data.Kysymykset;
+import Data.Vastaukset;
 
 @Path("/kysymysservice")
 public class KysymysService {
@@ -120,20 +121,24 @@ public class KysymysService {
 
 	}
 
-	@DELETE
+	@GET
 	@Path("/deletekysymys/{kysymys_id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-
 	public void deleteKysymys(@PathParam("kysymys_id") int kysymys_id) {
 
 		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Vastaukset v = em.find(Vastaukset.class, kysymys_id);
 		Kysymykset k = em.find(Kysymykset.class, kysymys_id);
+		
 		if (k != null) {
 			em.remove(k);
+			em.remove(v);
 		}
 		em.getTransaction().commit();
-		request.setAttribute("kysymysentlit", k);
+		List<Kysymykset> list = em.createQuery("select a from Kysymykset a").getResultList();
+		request.setAttribute("kysymysentlist", list);
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/EditKysymykset.jsp");
 
 		try {

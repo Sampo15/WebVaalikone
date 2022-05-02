@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.Dao;
 import Calculator.answerCalc;
 import Data.Ehdokkaat;
+import Data.Kysymys;
 
 /**
  * Servlet implementation class ShowResults
@@ -45,12 +46,14 @@ public class ShowResults extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int i = 0;
+		
+		ArrayList<Kysymys> questionlist = dao.lueKysymykset();
 
-		ArrayList <Integer> answerList = new ArrayList <>();
-		while(request.getParameter("vastaus"+i)!= null) {
-			answerList.add(Integer.parseInt(request.getParameter("vastaus"+i)));
-			i++;
+		ArrayList <Integer> answerList = new ArrayList<>();
+		
+		for(int i = 0; i< questionlist.size(); i++) {
+			answerList.add(Integer.parseInt(request.getParameter("vastaus"+questionlist.get(i).getId())));
+		
 		}
 
 		ArrayList<Ehdokkaat> ehdokasList = calc.matchCandidates(answerList);
