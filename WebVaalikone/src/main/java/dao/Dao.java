@@ -231,17 +231,17 @@ public class Dao {
 	}
 
 	public void lisaaVastaus(int ehdokas) {
-
+		ArrayList<Kysymys>kysymykset = lueKysymykset();
 		Random rn = new Random();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(
 					"insert into vastaukset (ehdokas_id, kysymys_id, vastaus,kommentti) values (?,?,?,?)");
-			for (int i = 1; i <= countKysymykset(); i++) {
+			for (int i = 0; i < kysymykset.size(); i++) {
 				int vastaus = rn.nextInt(5) + 1;
 				pstmt.setInt(1, ehdokas);
-				pstmt.setInt(2, i);
+				pstmt.setInt(2, kysymykset.get(i).getId());
 				pstmt.setInt(3, vastaus);
-				pstmt.setString(4, "ehdokkaan " + ehdokas + " vastaus kysymykseen " + i);
+				pstmt.setString(4, "ehdokkaan " + ehdokas + " vastaus kysymykseen " + kysymykset.get(i).getId());
 
 				pstmt.executeUpdate();
 			}
