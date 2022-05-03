@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Data.Ehdokkaat;
+import Data.Ehdokas;
 import dao.Dao;
 
 /**
@@ -49,8 +49,8 @@ public class AddEhdokas extends HttpServlet {
 		String vaalinro = request.getParameter("vaalinro");
 		String ehduser = request.getParameter("ehduser");
 		String ehdpass = request.getParameter("ehdpass");
-		Ehdokkaat ed = new Ehdokkaat(ehdokas_id, sukunimi, etunimi, puolue, eduskunta, edistaa, paikkakunta, vaalinro, ehduser, ehdpass);
-		ArrayList<Ehdokkaat> list=null;
+		Ehdokas ed = new Ehdokas(ehdokas_id, sukunimi, etunimi, puolue, eduskunta, edistaa, paikkakunta, vaalinro, ehduser, ehdpass);
+		ArrayList<Ehdokas> list=null;
 	if(dao.getConnection()) {
 		dao.lisaaEhdokas(ed);
 		

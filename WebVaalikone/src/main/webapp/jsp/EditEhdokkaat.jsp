@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="Data.Ehdokkaat"%>
+<%@ page import="Data.Ehdokas"%>
 
 <!DOCTYPE html>
 <html>
@@ -33,10 +33,10 @@
 					<div class="Ehdokkaat">
 						<strong>Nimi:</strong> ${ehdokkaat.sukunimi} ${ehdokkaat.etunimi}
 						<br> <strong>Vaalinumero:</strong> ${ehdokkaat.vaalinro}<br>
-						<strong>Kotipaikkakunta:</strong> ${ehdokkaat.paikkakunta}<br>
+						<strong>Kotipaikkakunta:</strong> ${ehdokkaat.kotipaikkakunta}<br>
 						<strong> Puolue:</strong> ${ehdokkaat.puolue} <br> <strong>Miksi
-							eduskuntaan:</strong> ${ehdokkaat.eduskunta} <br> <strong>Mitä
-							haluaa edistää: </strong> ${ehdokkaat.edistaa} <a
+							eduskuntaan:</strong> ${ehdokkaat.miksi_eduskuntaan} <br> <strong>Mitä
+							haluaa edistää: </strong> ${ehdokkaat.mita_asioita_haluat_edistaa} <a
 							href='/ReadUpdateEhdokkaat?id=${ehdokkaat.ehdokas_id}'>Muokkaa</a>
 					</div>
 				</td>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
 import Calculator.answerCalc;
-import Data.Ehdokkaat;
+import Data.Ehdokas;
 
 /**
  * Servlet implementation class ShowResults
@@ -53,7 +53,7 @@ public class ShowResults extends HttpServlet {
 			i++;
 		}
 
-		ArrayList<Ehdokkaat> ehdokasList = calc.matchCandidates(answerList);
+		ArrayList<Ehdokas> ehdokasList = calc.matchCandidates(answerList);
 		request.setAttribute("topThree", ehdokasList);
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/ShowResults.jsp");
 		rd.forward(request, response);

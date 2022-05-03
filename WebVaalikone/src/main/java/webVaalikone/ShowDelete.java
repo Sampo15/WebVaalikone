@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Data.Ehdokkaat;
+import Data.Ehdokas;
 import dao.Dao;
 /**
  * Servlet implementation class ShowDelete
@@ -30,7 +30,7 @@ public class ShowDelete extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Ehdokkaat> list=null;
+		ArrayList<Ehdokas> list=null;
 		if (dao.getConnection()) {
 			list=dao.lueEhdokkaat();
 		}

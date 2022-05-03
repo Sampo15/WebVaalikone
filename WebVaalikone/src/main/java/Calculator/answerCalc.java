@@ -1,7 +1,7 @@
 package Calculator; 
 
 import dao.Dao;
-import Data.Ehdokkaat;
+import Data.Ehdokas;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,16 +9,16 @@ import java.util.Comparator;
 
 public class answerCalc {
 	public Dao dao;
-	public ArrayList<Ehdokkaat> matchCandidates(ArrayList<Integer> answers) {
+	public ArrayList<Ehdokas> matchCandidates(ArrayList<Integer> answers) {
 		dao = new Dao();
 		dao.getConnection();
-		ArrayList <Ehdokkaat> ehdokkaat = dao.lueEhdokkaat();
+		ArrayList <Ehdokas> ehdokas = dao.lueEhdokkaat();
 		float score = 100;
 		ArrayList <Integer> userAnswers = answers;
 		int counted = 0;
 
-		for (int i = 0; i < ehdokkaat.size(); i++) {
-			ArrayList <Integer> candAnswers = dao.lueVastaukset(ehdokkaat.get(i).getEhdokas_id());
+		for (int i = 0; i < ehdokas.size(); i++) {
+			ArrayList <Integer> candAnswers = dao.lueVastaukset(ehdokas.get(i).getEhdokas_id());
 			if (candAnswers.size() == dao.countKysymykset()) {
 				score = 0;
 				for (int y = 0; y < candAnswers.size(); y++) {
@@ -29,13 +29,13 @@ public class answerCalc {
 				}
 				score = score / counted;
 			}
-				ehdokkaat.get(i).setScore(score);
+				ehdokas.get(i).setScore(score);
 			
 		}		
-		ArrayList<Ehdokkaat> topThree = new ArrayList<>();
+		ArrayList<Ehdokas> topThree = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
-			topThree.add(Collections.min(ehdokkaat, Comparator.comparing(s -> s.getScore())));
-			ehdokkaat.remove(Collections.min(ehdokkaat, Comparator.comparing(s -> s.getScore())));
+			topThree.add(Collections.min(ehdokas, Comparator.comparing(s -> s.getScore())));
+			ehdokas.remove(Collections.min(ehdokas, Comparator.comparing(s -> s.getScore())));
 		}
 
 		return topThree;

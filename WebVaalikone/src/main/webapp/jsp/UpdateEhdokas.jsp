@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="Data.Ehdokas"%>
+    <%@ page import="Data.Ehdokas"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +11,11 @@
 	rel="stylesheet"
 	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 	crossorigin="anonymous">
-<title>Insert title here</title>
+<title>Tervetuloa ${requestScope.ehdokas.etunimi} ${requestScope.ehdokas.sukunimi}!</title>
 </head>
 <body>
-	<a href='/jsp/AdminPage.jsp'>
+<body>
+	<a href='/index.html'>
 		<button class="button">Takaisin</button>
 	</a>
 
@@ -41,7 +40,7 @@
 
 		<div class="input-group">
 			<label>Muokkaa kotipaikkakunta:</label> <input type='text'
-				name='paikkakunta' value='${requestScope.ehdokas.paikkakunta}'>
+				name='paikkakunta' value='${requestScope.ehdokas.kotipaikkakunta}'>
 		</div>
 
 
@@ -54,25 +53,20 @@
 
 		<div class="input-group">
 			<label>Muokkaa miksi eduskuntaan:</label> <input type='text'
-				name='eduskunta' value='${requestScope.ehdokas.eduskunta}'>
+				name='eduskunta' value='${requestScope.ehdokas.miksi_eduskuntaan}'>
 		</div>
 		<div class="input-group">
 			<label>Lisää mitä haluaa edistää</label> <input type='text'
-				name='edistaa' value='${requestScope.ehdokas.edistaa}'>
+				name='edistaa' value='${requestScope.ehdokas.mita_asioita_haluat_edistaa}'>
 		</div>
-		<div class="input-group">
-			<label>Muokkaa käyttäjätunnusta:</label> <input type='text' name='ehduser'
-				value='${requestScope.ehdokas.ehduser}'>
-		</div>
-		<div class="input-group">
-			<label>Muokkaa salasanaa:</label> <input type='text' name='ehdpass'
-				value='${requestScope.ehdokas.ehdpass}'>
-		</div>
+	
 		<div class="input-group">
 			<input type='submit' name='ok' value='Muokkaa'>
 		</div>
 
-
 	</form>
+	<a href='/index.html'>
+		<button class="button">Vastaa kysymyksiin</button>
+	</a>
 </body>
 </html>

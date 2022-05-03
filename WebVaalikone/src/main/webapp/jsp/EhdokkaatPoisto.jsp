@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="Data.Ehdokkaat"%>
+<%@ page import="Data.Ehdokas"%>
 <!DOCTYPE html>
 <html>
 <head>

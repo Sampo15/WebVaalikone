@@ -12,7 +12,7 @@ import java.util.Random;
 import Data.Kysymys;
 
 import Data.Admin;
-import Data.Ehdokkaat;
+import Data.Ehdokas;
 
 import java.sql.Connection;
 
@@ -98,20 +98,20 @@ public class Dao {
 
 	}
 
-	public ArrayList<Ehdokkaat> lueEhdokkaat() {
-		ArrayList<Ehdokkaat> ehdokkaatlist = new ArrayList<>();
+	public ArrayList<Ehdokas> lueEhdokkaat() {
+		ArrayList<Ehdokas> ehdokkaatlist = new ArrayList<>();
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from ehdokkaat");
 			while (rs.next()) {
-				Ehdokkaat ed = new Ehdokkaat();
+				Ehdokas ed = new Ehdokas();
 				ed.setEhdokas_id(rs.getInt("ehdokas_id"));
 				ed.setSukunimi(rs.getString("sukunimi"));
 				ed.setEtunimi(rs.getString("etunimi"));
 				ed.setPuolue(rs.getString("puolue"));
-				ed.setEduskunta(rs.getString("MIKSI_EDUSKUNTAAN"));
-				ed.setEdistaa(rs.getString("MITA_ASIOITA_HALUAT_EDISTAA"));
-				ed.setPaikkakunta(rs.getString("KOTIPAIKKAKUNTA"));
+				ed.setMiksi_eduskuntaan(rs.getString("MIKSI_EDUSKUNTAAN"));
+				ed.setMita_asioita_haluat_edistaa(rs.getString("MITA_ASIOITA_HALUAT_EDISTAA"));
+				ed.setKotipaikkakunta(rs.getString("KOTIPAIKKAKUNTA"));
 				ed.setVaalinro(rs.getInt("vaalinro"));
 				ed.setEhduser(rs.getString("ehduser"));
 				ed.setEhdpass(rs.getString("ehdpass"));
@@ -123,9 +123,9 @@ public class Dao {
 		}
 	}
 
-	public Ehdokkaat lueEhdokas(String ehdokas_id) {
+	public Ehdokas lueEhdokas(String ehdokas_id) {
 
-		Ehdokkaat ed = null;
+		Ehdokas ed = null;
 
 		try {
 
@@ -134,15 +134,15 @@ public class Dao {
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				ed = new Ehdokkaat();
+				ed = new Ehdokas();
 
 				ed.setEhdokas_id(rs.getInt("ehdokas_id"));
 				ed.setSukunimi(rs.getString("sukunimi"));
 				ed.setEtunimi(rs.getString("etunimi"));
 				ed.setPuolue(rs.getString("puolue"));
-				ed.setEduskunta(rs.getString("MIKSI_EDUSKUNTAAN"));
-				ed.setEdistaa(rs.getString("MITA_ASIOITA_HALUAT_EDISTAA"));
-				ed.setPaikkakunta(rs.getString("KOTIPAIKKAKUNTA"));
+				ed.setMiksi_eduskuntaan(rs.getString("MIKSI_EDUSKUNTAAN"));
+				ed.setMita_asioita_haluat_edistaa(rs.getString("MITA_ASIOITA_HALUAT_EDISTAA"));
+				ed.setKotipaikkakunta(rs.getString("KOTIPAIKKAKUNTA"));
 				ed.setVaalinro(rs.getInt("vaalinro"));
 				ed.setEhduser(rs.getString("ehduser"));
 				ed.setEhdpass(rs.getString("ehdpass"));
@@ -154,7 +154,7 @@ public class Dao {
 
 	}
 
-	public ArrayList<Ehdokkaat> Muokkaehdokas(Ehdokkaat ed) {
+	public ArrayList<Ehdokas> Muokkaehdokas(Ehdokas ed) {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(
 					"update ehdokkaat set sukunimi=?, etunimi=?, puolue=?, MIKSI_EDUSKUNTAAN=?, MITA_ASIOITA_HALUAT_EDISTAA=?, KOTIPAIKKAKUNTA=?, vaalinro=?,ehduser=?,ehdpass=? where ehdokas_id=?");
@@ -162,9 +162,9 @@ public class Dao {
 			pstmt.setString(1, ed.getSukunimi());
 			pstmt.setString(2, ed.getEtunimi());
 			pstmt.setString(3, ed.getPuolue());
-			pstmt.setString(4, ed.getEduskunta());
-			pstmt.setString(5, ed.getEdistaa());
-			pstmt.setString(6, ed.getPaikkakunta());
+			pstmt.setString(4, ed.getMiksi_eduskuntaan());
+			pstmt.setString(5, ed.getMita_asioita_haluat_edistaa());
+			pstmt.setString(6, ed.getKotipaikkakunta());
 			pstmt.setInt(7, ed.getVaalinro());
 			pstmt.setString(8, ed.getEhduser());
 			pstmt.setString(9, ed.getEhdpass());
@@ -192,7 +192,7 @@ public class Dao {
 		}
 	}
 
-	public ArrayList<Ehdokkaat> lisaaEhdokas(Ehdokkaat ed) {
+	public ArrayList<Ehdokas> lisaaEhdokas(Ehdokas ed) {
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(
@@ -201,9 +201,9 @@ public class Dao {
 			pstmt.setString(1, ed.getSukunimi());
 			pstmt.setString(2, ed.getEtunimi());
 			pstmt.setString(3, ed.getPuolue());
-			pstmt.setString(4, ed.getEduskunta());
-			pstmt.setString(5, ed.getEdistaa());
-			pstmt.setString(6, ed.getPaikkakunta());
+			pstmt.setString(4, ed.getMiksi_eduskuntaan());
+			pstmt.setString(5, ed.getMita_asioita_haluat_edistaa());
+			pstmt.setString(6, ed.getKotipaikkakunta());
 			pstmt.setInt(7, ed.getVaalinro());
 			pstmt.setString(8, ed.getEhduser());
 			pstmt.setString(9, ed.getEhdpass());
@@ -214,9 +214,9 @@ public class Dao {
 			pstmt.setString(1, ed.getSukunimi());
 			pstmt.setString(2, ed.getEtunimi());
 			pstmt.setString(3, ed.getPuolue());
-			pstmt.setString(4, ed.getEduskunta());
-			pstmt.setString(5, ed.getEdistaa());
-			pstmt.setString(6, ed.getPaikkakunta());
+			pstmt.setString(4, ed.getMiksi_eduskuntaan());
+			pstmt.setString(5, ed.getMita_asioita_haluat_edistaa());
+			pstmt.setString(6, ed.getKotipaikkakunta());
 			pstmt.setInt(7, ed.getVaalinro());
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -251,13 +251,13 @@ public class Dao {
 
 	}
 
-	public Ehdokkaat lueEhdokkaatPoisto() {
-		Ehdokkaat list = new Ehdokkaat();
+	public Ehdokas lueEhdokkaatPoisto() {
+		Ehdokas list = new Ehdokas();
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet RS = stmt.executeQuery("select * from ehdokkaat");
 			while (RS.next()) {
-				Ehdokkaat ehdokas = new Ehdokkaat();
+				Ehdokas ehdokas = new Ehdokas();
 				ehdokas.setEhdokas_id(RS.getInt("ehdokas_id"));
 				list = ehdokas;
 			}
@@ -267,7 +267,7 @@ public class Dao {
 		}
 	}
 
-	public Ehdokkaat poistaEhdokas(String ehdokas) {
+	public Ehdokas poistaEhdokas(String ehdokas) {
 		try {
 			String sql = "DELETE FROM ehdokkaat WHERE ehdokas_id = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
