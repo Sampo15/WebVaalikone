@@ -88,6 +88,12 @@
 	    <artifactId>jersey-media-json-jackson</artifactId>
 	    <version>2.27</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+<dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+    <version>1.15</version>
+</dependency>        
 
 <!-- This is needed that your server can handle REST-class as a servlet.
 		e.g. the class org.glassfish.jersey.servlet.ServletContainer 

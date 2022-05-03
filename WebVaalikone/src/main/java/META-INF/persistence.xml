@@ -3,17 +3,24 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	
+
+
 <!-- The name of the persistence unit: here jpafishapp. This is used in the application code -->	
 	<persistence-unit name="vaalikone">
 <!-- All the classes, which belong to the peristence unit and so can be persisted using JPA
 	Here there is just one: app.Fish. All the other should be added in the same way. -->	
 	<class>Data.Kysymykset</class>
 	<class>Data.Vastaukset</class>
+   <class>Data.Ehdokas</class>
+
 <!-- If using MySQL 5.7 or newer -->
 <!--  
 	as a root user in the MySQL command prompt give the commands:
 	use performance_schema; 
+
+
 	GRANT SELECT ON performance_schema.session_variables TO haltia@localhost;
+
 	
 	Change pena to the username you are using below in the property jdbc.user.
 	 -->		
@@ -25,6 +32,8 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org
 <!--  ddlGeneration == database tables will be created, if they do not exist. The database show be created beforehand--> 
     <properties>
 	    <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+
+
 	    <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/vaalikone?useSSL=false" />
 	    <property name="javax.persistence.jdbc.user" value="haltia" />
 	    <property name="javax.persistence.jdbc.password" value="1234" />
@@ -33,3 +42,4 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org
 	
 	</persistence-unit>
 </persistence>
+

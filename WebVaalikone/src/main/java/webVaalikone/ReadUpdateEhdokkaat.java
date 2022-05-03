@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Data.Ehdokkaat;
+import Data.Ehdokas;
 import dao.Dao;
 
 /**
@@ -31,7 +31,7 @@ public class ReadUpdateEhdokkaat extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String ehdokas_id=request.getParameter("id");
-		Ehdokkaat ehdokas=null;
+		Ehdokas ehdokas=null;
 		if (dao.getConnection()) {
 			ehdokas=dao.lueEhdokas(ehdokas_id);
 		}

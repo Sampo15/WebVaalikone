@@ -1,17 +1,23 @@
 package Data;
 
-public class Ehdokkaat {
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity(name="ehdokkaat")
+public class Ehdokas {
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 private int ehdokas_id;
 private String sukunimi;
 private String etunimi;
 private String puolue;
-private String eduskunta;
-private String edistaa;
+private String miksi_eduskuntaan;
+private String mita_asioita_haluat_edistaa;
 
 private float score;
 
-private String paikkakunta;
+private String kotipaikkakunta;
 private int vaalinro;
 private String ehduser;
 private String ehdpass;
@@ -29,21 +35,21 @@ public String getEhdpass() {
 public void setEhdpass(String ehdpass) {
 	this.ehdpass = ehdpass;
 }
-public Ehdokkaat(String ehdokas_id, String sukunimi, String etunimi, String puolue, String eduskunta, String edistaa, String paikkakunta, String vaalinro, String ehduser, String ehdpass) {
+public Ehdokas(String ehdokas_id, String sukunimi, String etunimi, String puolue, String eduskunta, String edistaa, String paikkakunta, String vaalinro, String ehduser, String ehdpass) {
 	setEhdokas_id(ehdokas_id);
 	setVaalinro(vaalinro);
 	
 	this.sukunimi=sukunimi;
 	this.etunimi=etunimi;
 	this.puolue=puolue;
-	this.eduskunta = eduskunta;
-	this.edistaa = edistaa;
-	this.paikkakunta = paikkakunta;
+	this.miksi_eduskuntaan = eduskunta;
+	this.mita_asioita_haluat_edistaa = edistaa;
+	this.kotipaikkakunta = paikkakunta;
 	this.ehduser = ehduser;
 	this.ehdpass = ehdpass;
 
 }
-public Ehdokkaat() {
+public Ehdokas() {
 
 }
 
@@ -93,30 +99,30 @@ public String getPuolue() {
 public void setPuolue(String puolue) {
 	this.puolue = puolue;
 }
-public String getEduskunta() {
-	return eduskunta;
+public String getMiksi_eduskuntaan() {
+	return miksi_eduskuntaan;
 }
 
-public void setEduskunta(String eduskunta) {
-	this.eduskunta = eduskunta;
+public void setMiksi_eduskuntaan(String eduskunta) {
+	this.miksi_eduskuntaan = eduskunta;
 }
 
-public String getEdistaa() {
-	return edistaa;
+public String getMita_asioita_haluat_edistaa() {
+	return mita_asioita_haluat_edistaa;
 }
 
-public void setEdistaa(String edistaa) {
-	this.edistaa = edistaa;
-}
-
-
-public String getPaikkakunta() {
-	return paikkakunta;
+public void setMita_asioita_haluat_edistaa(String edistaa) {
+	this.mita_asioita_haluat_edistaa = edistaa;
 }
 
 
-public void setPaikkakunta(String paikkakunta) {
-	this.paikkakunta = paikkakunta;
+public String getKotipaikkakunta() {
+	return kotipaikkakunta;
+}
+
+
+public void setKotipaikkakunta(String paikkakunta) {
+	this.kotipaikkakunta = paikkakunta;
 }
 
 
