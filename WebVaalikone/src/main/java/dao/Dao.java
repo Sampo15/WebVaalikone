@@ -49,11 +49,25 @@ public class Dao {
 		ArrayList<Kysymys> list = new ArrayList<>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from kysymykset");
+			ResultSet rs = stmt.executeQuery("select * from kysymykset where kysymys_id between 1 and 10");
 			while (rs.next()) {
 				Kysymys k = new Kysymys();
 				k.setKysymys(rs.getString("kysymys"));
-				k.setId(rs.getInt("kysymys_id"));
+				list.add(k);
+			}
+			return list;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	public ArrayList<Kysymys> lueKysymykset2() {
+		ArrayList<Kysymys> list = new ArrayList<>();
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from kysymykset where kysymys_id between 11 and 100");
+			while (rs.next()) {
+				Kysymys k = new Kysymys();
+				k.setKysymys(rs.getString("kysymys"));
 				list.add(k);
 			}
 			return list;
