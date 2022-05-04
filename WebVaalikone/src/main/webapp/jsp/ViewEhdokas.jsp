@@ -34,9 +34,9 @@
 			<div class='tiedot'>
 
 				<strong>Vaalinumero:</strong> ${ehdokas.vaalinro}<br> <strong>Kotipaikkakunta:</strong>
-				<br> ${ehdokas.paikkakunta}<br> <strong>Puolue:</strong> <br>
-				${ehdokas.puolue} <br> <strong>Miksi eduskuntaan:</strong> <br>${ehdokas.eduskunta}
-				<br> <strong>Mita haluaa edistää:</strong> <br>${ehdokas.edistaa}</div>
+				<br> ${ehdokas.kotipaikkakunta}<br> <strong>Puolue:</strong> <br>
+				${ehdokas.puolue} <br> <strong>Miksi eduskuntaan:</strong> <br>${ehdokas.miksi_eduskuntaan}
+				<br> <strong>Mita haluaa edistää:</strong> <br>${ehdokas.mita_asioita_haluat_edistaa}</div>
 
 		</div>
 

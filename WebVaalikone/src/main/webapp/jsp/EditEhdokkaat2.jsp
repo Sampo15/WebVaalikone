@@ -41,7 +41,7 @@
 
 		<div class="input-group">
 			<label>Muokkaa kotipaikkakunta:</label> <input type='text'
-				name='paikkakunta' value='${requestScope.ehdokas.paikkakunta}'>
+				name='paikkakunta' value='${requestScope.ehdokas.kotipaikkakunta}'>
 		</div>
 
 
@@ -54,11 +54,11 @@
 
 		<div class="input-group">
 			<label>Muokkaa miksi eduskuntaan:</label> <input type='text'
-				name='eduskunta' value='${requestScope.ehdokas.eduskunta}'>
+				name='eduskunta' value='${requestScope.ehdokas.miksi_eduskuntaan}'>
 		</div>
 		<div class="input-group">
 			<label>Lisää mitä haluaa edistää</label> <input type='text'
-				name='edistaa' value='${requestScope.ehdokas.edistaa}'>
+				name='edistaa' value='${requestScope.ehdokas.mita_asioita_haluat_edistaa}'>
 		</div>
 		<div class="input-group">
 			<label>Muokkaa käyttäjätunnusta:</label> <input type='text' name='ehduser'

@@ -33,9 +33,10 @@
 	</div>
 	<div>
 		
-<form action='/rest/kysymysservice/readkysymys' method='get'>
+<form class="nobox" action='/rest/kysymysservice/readkysymys' method='get'>
 
 <input class="button "type='submit' name='ok' value='Muokkaa kysymyksiä'>
+
 </form>
 <a href='AddKysymys.jsp'>
 			<button class="button">Lisää Kysymys</button>
