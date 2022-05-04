@@ -8,7 +8,7 @@
 }
 .table_center{
 
-  margin-left: auto;
+  margin-left: 564px;
   margin-right: auto;
   text-align: center;
   
@@ -64,7 +64,7 @@ display:inline-block;
 	margin-top: 40px;
     color: #ffffff;
 	background-color:#a6acaf;
-	background-image: url(.../img/kysymykset.jpg);
+	background-image: url(/img/kysymykset.jpg);
 	background-position: center;
     background-repeat: repeat;
     background-color: #21213c;
@@ -89,20 +89,29 @@ display:inline-block;
   font-weight: bold;
   margin-bottom: 40px;
 }
+.button2 {
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-weight: bold;
+  padding: 7px;
+  width: 150px;
+  background-color: transparent;
+  border: 1px solid #67b7b6;
+  }
 
 .button3 {
   margin-top: 40px;
 }
-a:link {
-  text-decoration: none;
-}
 
-a:visited {
+a:hover, a, a:focus, a:active, a:link, a:visited {
   text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 .tiedot {
