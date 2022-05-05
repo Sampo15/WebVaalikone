@@ -20,6 +20,11 @@
 		<button class="button">Takaisin</button>
 	</a>
 
+<h1>Select file to upload</h1>
+<form action="/rest/ehdokasservice/lisaakuva/${requestScope.ehdokas.ehdokas_id}" method="post" enctype="multipart/form-data">
+    Select a file : <input type="file" name="file" accept=".png" /><br>
+    <input type="submit" value="Upload" />
+</form>
 	<form action='/UpdateEhdokkaat' method='post'>
 <p><img id="output" width="200" /></p>
 		<div class="input-group">
