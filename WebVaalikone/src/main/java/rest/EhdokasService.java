@@ -53,17 +53,12 @@ public class EhdokasService {
 	@POST
 	@Path("/lisaakuva/{ehdokas_id}")
 	@Consumes({MediaType.MULTIPART_FORM_DATA})
-	public String uploadFile( @FormDataParam("file") InputStream fileInputStream,
+	public String uploadFile(@PathParam("ehdokas_id") int ehdokas_id, @FormDataParam("file") InputStream fileInputStream,
             @FormDataParam("file") FormDataContentDisposition fileMetaData, @Context ServletContext sc) 
             		throws Exception
 	{
 		EntityManager em = emf.createEntityManager();
-	    int i = 0;
-		em.getTransaction().begin();
-	    List<Ehdokas> list = em.createQuery("select a from ehdokkaat a").getResultList();
-	    em.getTransaction().commit();
-	    int ehdokas_id = list.get(i).getEhdokas_id();
-	    
+		
 	    String fileName = ehdokas_id + ".png";
 
 	    String UPLOAD_PATH = (System.getProperty("user.dir")) + "\\img\\";
@@ -86,7 +81,7 @@ public class EhdokasService {
 	    catch (IOException e){
 	        throw new WebApplicationException("Virhe ladattaessa tiedostoa.");
 	    }
-		RequestDispatcher rd=request.getRequestDispatcher("/index.html");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/KuvaLisatty.jsp");
 		rd.forward(request, response);
 	    return null;
 	}
@@ -110,7 +105,7 @@ public class EhdokasService {
 			em.merge(ehd);
 		}
 		em.getTransaction().commit();
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/UpdateEhdokas.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/MuokkausLisatty.jsp");
 		request.setAttribute("ehdokas", ehd);
 		try {
 			rd.forward(request, response);

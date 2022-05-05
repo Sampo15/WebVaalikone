@@ -21,15 +21,11 @@
 
 
 
-<h1>Select file to upload</h1>
-<form action="/rest/ehdokasservice/lisaakuva/${requestScope.ehdokas.ehdokas_id}" method="post" enctype="multipart/form-data">
-    Select a file : <input type="file" name="file" accept=".png" /><br>
-    <input type="submit" value="Upload" />
-</form>
-	<form action='/UpdateEhdokkaat' method='post'>
-<img src="../img/${requestScope.ehdokas.ehdokas_id}.png" width="200" height="250" id="img" onerror="this.onerror=null; this.src='../img/Default.png'">
 
 	<form action='/rest/ehdokasservice/updateehdokas' method='post'>
+	
+		<img src="../img/${requestScope.ehdokas.ehdokas_id}.png" width="200" height="250" id="img" onerror="this.onerror=null; this.src='../img/Default.png'">
+			
 		<div class="input-group">
 			<label></label> <input hidden="hidden" type='text' name='ehdokas_id'
 				value='${requestScope.ehdokas.ehdokas_id}' readonly> <input
