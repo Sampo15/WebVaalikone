@@ -91,6 +91,7 @@ public class EhdokasService {
 			CompositeKey key = new CompositeKey(list.get(y).getKysymys_id(), ehdokas_id);
 			em.getTransaction().begin();
 			Vastaukset v = em.find(Vastaukset.class, key);
+			
 			if (v==null) {
 				em.getTransaction().commit();
 				break;
@@ -101,7 +102,8 @@ public class EhdokasService {
 		}
 		
 		for(int i = 0; i< list.size(); i++) {
-			Vastaukset a = new Vastaukset(ehdokas_id, list.get(i).getKysymys_id(), Integer.parseInt(request.getParameter("vastaus"+list.get(i).getKysymys_id())));
+			String kommentti = "ehdokkaan " + ehdokas_id + " vastaus kysymykseen " + list.get(i).getKysymys_id();
+			Vastaukset a = new Vastaukset(ehdokas_id, list.get(i).getKysymys_id(), Integer.parseInt(request.getParameter("vastaus"+list.get(i).getKysymys_id())), kommentti);
 			em.getTransaction().begin();
 			em.persist(a);
 			em.getTransaction().commit();
