@@ -16,7 +16,7 @@ public class Vastaukset {
 	@Id
 	private int ehdokas_id;
 	private int vastaus;
-
+	private String kommentti;
 	public Vastaukset() {
 
 	}
@@ -25,10 +25,11 @@ public class Vastaukset {
 		this.kysymys_id = kysymys_id;
 	}
 	
-	public Vastaukset(int ehdokas_id, int kysymys_id, int vastaus) {
+	public Vastaukset(int ehdokas_id, int kysymys_id, int vastaus, String kommentti) {
 		this.kysymys_id = kysymys_id;
 		this.ehdokas_id = ehdokas_id;
 		this.vastaus = vastaus;
+		this.kommentti = kommentti;
 	}
 
 	public int getKysymys_id() {
