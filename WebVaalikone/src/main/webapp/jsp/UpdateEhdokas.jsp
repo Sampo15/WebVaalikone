@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0" />
 <link rel="stylesheet" type="text/css" href="/CSS/Admin.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
@@ -14,13 +15,19 @@
 <title>Tervetuloa ${requestScope.ehdokas.etunimi} ${requestScope.ehdokas.sukunimi}!</title>
 </head>
 <body>
-<body>
 	<a href='/index.html'>
 		<button class="button">Takaisin</button>
 	</a>
 
 
 
+<h1>Select file to upload</h1>
+<form action="/rest/ehdokasservice/lisaakuva/${requestScope.ehdokas.ehdokas_id}" method="post" enctype="multipart/form-data">
+    Select a file : <input type="file" name="file" accept=".png" /><br>
+    <input type="submit" value="Upload" />
+</form>
+	<form action='/UpdateEhdokkaat' method='post'>
+<img src="../img/${requestScope.ehdokas.ehdokas_id}.png" width="200" height="250" id="img" onerror="this.onerror=null; this.src='../img/Default.png'">
 
 	<form action='/rest/ehdokasservice/updateehdokas' method='post'>
 		<div class="input-group">

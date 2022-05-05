@@ -13,26 +13,12 @@
 	rel="stylesheet"
 	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 	crossorigin="anonymous">
-<title>Insert title here</title>
+<title>Ehdokkaan muokkaus</title>
 </head>
 <body>
 	<a href='/jsp/AdminPage.jsp'>
 		<button class="button">Takaisin</button>
 	</a>
-
-
-
- 
-<p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)"></p>
-<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-<p><img id="output" width="200" /></p>
-
-<script>
-var loadFile = function(event) {
-	var image = document.getElementById('output');
-	image.src = URL.createObjectURL(event.target.files[0]);
-};
-</script>
 
 	<form action='/UpdateEhdokkaat' method='post'>
 <p><img id="output" width="200" /></p>
