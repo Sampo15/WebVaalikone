@@ -49,10 +49,11 @@ public class Dao {
 		ArrayList<Kysymys> list = new ArrayList<>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from kysymykset where kysymys_id between 1 and 10");
+			ResultSet rs = stmt.executeQuery("select * from kysymykset limit 10");
 			while (rs.next()) {
 				Kysymys k = new Kysymys();
 				k.setKysymys(rs.getString("kysymys"));
+				k.setId(rs.getInt("kysymys_id"));
 				list.add(k);
 			}
 			return list;
@@ -64,10 +65,11 @@ public class Dao {
 		ArrayList<Kysymys> list = new ArrayList<>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from kysymykset where kysymys_id between 11 and 100");
+			ResultSet rs = stmt.executeQuery("select * from kysymykset limit 10,100");
 			while (rs.next()) {
 				Kysymys k = new Kysymys();
 				k.setKysymys(rs.getString("kysymys"));
+				k.setId(rs.getInt("kysymys_id"));
 				list.add(k);
 			}
 			return list;

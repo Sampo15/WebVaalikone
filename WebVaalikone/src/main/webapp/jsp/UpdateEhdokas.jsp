@@ -28,6 +28,8 @@
 </form>
 	<form action='/UpdateEhdokkaat' method='post'>
 <img src="../img/${requestScope.ehdokas.ehdokas_id}.png" width="200" height="250" id="img" onerror="this.onerror=null; this.src='../img/Default.png'">
+
+	<form action='/rest/ehdokasservice/updateehdokas' method='post'>
 		<div class="input-group">
 			<label></label> <input hidden="hidden" type='text' name='ehdokas_id'
 				value='${requestScope.ehdokas.ehdokas_id}' readonly> <input
@@ -64,14 +66,23 @@
 			<label>Lisää mitä haluaa edistää</label> <input type='text'
 				name='edistaa' value='${requestScope.ehdokas.mita_asioita_haluat_edistaa}'>
 		</div>
+			<div class="input-group">
+			 <input hidden="hidden" type='text' name='ehduser'
+				value='${requestScope.ehdokas.ehduser}' readonly>
+		</div>
+		<div class="input-group">
+			 <input hidden="hidden" type='text' name='ehdpass'
+				value='${requestScope.ehdokas.ehdpass}' readonly>
+		</div>
 	
 		<div class="input-group">
 			<input type='submit' name='ok' value='Muokkaa'>
 		</div>
 
 	</form>
-	<a href='/index.html'>
+	<a href='/rest/ehdokasservice/readkysymys/${requestScope.ehdokas.ehdokas_id}'>
 		<button class="button">Vastaa kysymyksiin</button>
 	</a>
+	
 </body>
 </html>

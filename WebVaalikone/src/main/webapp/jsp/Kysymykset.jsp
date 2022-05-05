@@ -58,9 +58,7 @@ function Nayta2() {
 	<form action="/ShowResults" method="get">
 	
  
-		<%
-			int i = 0;
-		%>
+		
 
 		<table class="table_center" id="Page1">
 		
@@ -72,26 +70,26 @@ function Nayta2() {
 
 						<div class="Kysymykset">
 							<br> <strong>${kysymys.kysymys}</strong>
-
+								
 							<div class="form_middle">
 
 
 
 								<div class="vastauscont">
-									<a><input type="radio" name="vastaus<%=i%>"
+									<a><input type="radio" name="vastaus${kysymys.id}"
 										id="inlineRadio1" value="1" required class="vastausradio"></a>
 									<label class="form-check-label">Täysin eri mieltä</label>
 
 								</div>
 
 								<div class="vastauscont">
-									<input type="radio" name="vastaus<%=i%>" id="inlineRadio2"
+									<input type="radio" name="vastaus${kysymys.id}" id="inlineRadio2"
 										value="2" class="vastausradio"> <label
 										class="form-check-label">Jokseenkin eri mieltä</label>
 
 								</div>
 								<div class="vastauscont">
-									<input type="radio" name="vastaus<%=i%>" id="inlineRadio3"
+									<input type="radio" name="vastaus${kysymys.id}" id="inlineRadio3"
 										value="3" class="vastausradio"> <label
 										class="form-check-label">Ei mielipidettä</label>
 
@@ -99,14 +97,14 @@ function Nayta2() {
 
 								<div class="vastauscont">
 
-									<input type="radio" name="vastaus<%=i%>" id="inlineRadio4"
+									<input type="radio" name="vastaus${kysymys.id}" id="inlineRadio4"
 										value="4" class="vastausradio"> <label
 										class="form-check-label">Jokseenkin samaa mieltä</label>
 								</div>
 
 								<div class="vastauscont">
 
-									<input type="radio" name="vastaus<%=i%>" id="inlineRadio5"
+									<input type="radio" name="vastaus${kysymys.id}" id="inlineRadio5"
 										value="5" class="vastausradio"> <label
 										class="form-check-label">Täysin samaa mieltä</label>
 								</div>
@@ -117,9 +115,7 @@ function Nayta2() {
 
 				</tr>
 
-				<%
-					i++;
-				%>
+				
 			</c:forEach>
 			
 			
@@ -139,20 +135,20 @@ function Nayta2() {
 
 
 								<div class="vastauscont">
-									<a><input type="radio" name="vastaus<%=i%>"
+									<a><input type="radio" name="vastaus${kysymys.id}"
 										id="inlineRadio1" value="1" required class="vastausradio"></a>
 									<label class="form-check-label">Täysin eri mieltä</label>
 
 								</div>
 
 								<div class="vastauscont">
-									<input type="radio" name="vastaus<%=i%>" id="inlineRadio2"
+									<input type="radio" name="vastaus${kysymys.id}" id="inlineRadio2"
 										value="2" class="vastausradio"> <label
 										class="form-check-label">Jokseenkin eri mieltä</label>
 
 								</div>
 								<div class="vastauscont">
-									<input type="radio" name="vastaus<%=i%>" id="inlineRadio3"
+									<input type="radio" name="vastaus${kysymys.id}" id="inlineRadio3"
 										value="3" class="vastausradio"> <label
 										class="form-check-label">Ei mielipidettä</label>
 
@@ -160,14 +156,14 @@ function Nayta2() {
 
 								<div class="vastauscont">
 
-									<input type="radio" name="vastaus<%=i%>" id="inlineRadio4"
+									<input type="radio" name="vastaus${kysymys.id}" id="inlineRadio4"
 										value="4" class="vastausradio"> <label
 										class="form-check-label">Jokseenkin samaa mieltä</label>
 								</div>
 
 								<div class="vastauscont">
 
-									<input type="radio" name="vastaus<%=i%>" id="inlineRadio5"
+									<input type="radio" name="vastaus${kysymys.id}" id="inlineRadio5"
 										value="5" class="vastausradio"> <label
 										class="form-check-label">Täysin samaa mieltä</label>
 								</div>
@@ -178,9 +174,7 @@ function Nayta2() {
 
 				</tr>
 
-				<%
-					i++;
-				%>
+				
 			</c:forEach>
 		</table>
 		
