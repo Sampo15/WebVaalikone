@@ -8,30 +8,26 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   
-  	<servlet>
-		<servlet-name>jersey-servlet</servlet-name>
-		<servlet-class>
+  		<servlet>
+		<servlet-name>WebVaalikone</servlet-name>
+<servlet-class>
 			org.glassfish.jersey.servlet.ServletContainer
 		</servlet-class>
-		<!--
-			init-param tells in which package(s) REST services are (comma separated list if necessary)
-		-->
-		<init-param>
+  <init-param>
 		  <param-name>jersey.config.server.provider.packages</param-name>
-		  <param-value>rest</param-value>
-		</init-param>
-		<!--
-			This tells the server to load REST service when the server starts
-		-->
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<!--
-	servlet-mapping gives the first part of the path (url-pattern) where the
-	REST service is found (e.g. http://my.server.fi/rest) and the rest of the path is given in 
-	the REST class and in its methods
-	-->
+		  <param-value>filter,rest</param-value>
+</init-param>
+<init-param>
+	<param-name>jersey.config.server.provider.classnames</param-name>
+	<param-value>org.glassfish.jersey.media.multipart.MultiPartFeature</param-value>
+</init-param>
+<load-on-startup>1</load-on-startup>
+   
+</servlet>
 	<servlet-mapping>
-		<servlet-name>jersey-servlet</servlet-name>
+
+		<servlet-name>WebVaalikone</servlet-name>
+		
 		<url-pattern>/rest/*</url-pattern>
-	</servlet-mapping>    
+	</servlet-mapping>   
 </web-app>
