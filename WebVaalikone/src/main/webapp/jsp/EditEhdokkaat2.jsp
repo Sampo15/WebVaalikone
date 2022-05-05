@@ -22,8 +22,20 @@
 
 
 
+ 
+<p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)"></p>
+<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+<p><img id="output" width="200" /></p>
+
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
 
 	<form action='/UpdateEhdokkaat' method='post'>
+<p><img id="output" width="200" /></p>
 		<div class="input-group">
 			<label></label> <input hidden="hidden" type='text' name='ehdokas_id'
 				value='${requestScope.ehdokas.ehdokas_id}' readonly> <input
@@ -41,7 +53,7 @@
 
 		<div class="input-group">
 			<label>Muokkaa kotipaikkakunta:</label> <input type='text'
-				name='paikkakunta' value='${requestScope.ehdokas.paikkakunta}'>
+				name='paikkakunta' value='${requestScope.ehdokas.kotipaikkakunta}'>
 		</div>
 
 
@@ -54,11 +66,11 @@
 
 		<div class="input-group">
 			<label>Muokkaa miksi eduskuntaan:</label> <input type='text'
-				name='eduskunta' value='${requestScope.ehdokas.eduskunta}'>
+				name='eduskunta' value='${requestScope.ehdokas.miksi_eduskuntaan}'>
 		</div>
 		<div class="input-group">
 			<label>Lisää mitä haluaa edistää</label> <input type='text'
-				name='edistaa' value='${requestScope.ehdokas.edistaa}'>
+				name='edistaa' value='${requestScope.ehdokas.mita_asioita_haluat_edistaa}'>
 		</div>
 		<div class="input-group">
 			<label>Muokkaa käyttäjätunnusta:</label> <input type='text' name='ehduser'

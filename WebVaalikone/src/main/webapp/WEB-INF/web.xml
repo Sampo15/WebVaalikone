@@ -9,6 +9,7 @@
   </welcome-file-list>
 
 
+
 	
 	<servlet>
 		<servlet-name>WebVaalikone</servlet-name>
@@ -30,4 +31,7 @@
 	</servlet-mapping>
 
 
+
+
 </web-app>
+

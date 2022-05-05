@@ -45,6 +45,14 @@ public class ShowKysymykset extends HttpServlet {
 			System.out.println("No connection to database");
 		}
 		request.setAttribute("kysymyslist", list);
+		
+		ArrayList<Kysymys> list2 = null;
+		if (dao.getConnection()) {
+			list2 = dao.lueKysymykset2();
+		} else {
+			System.out.println("No connection to database");
+		}
+		request.setAttribute("kysymyslist2", list2);
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/Kysymykset.jsp");
 		rd.forward(request, response);
 	}

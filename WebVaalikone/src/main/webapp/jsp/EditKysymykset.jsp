@@ -15,7 +15,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 color="white"> Muokka kysymyksiä</h1>
+<h2>Muokka kysymyksiä</h2>
 
 <c:forEach var="kysymys" items="${requestScope.kysymysentlist}">
 <div class="Ehdokkaat">
