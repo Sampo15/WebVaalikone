@@ -27,6 +27,7 @@ import javax.ws.rs.core.MediaType;
 import Data.Ehdokas;
 import Data.Kysymykset;
 import Data.Vastaukset;
+import key.CompositeKey;
 
 @Path("/kysymysservice")
 public class KysymysService {
@@ -117,15 +118,7 @@ public class KysymysService {
 			em.merge(k);
 		}
 		em.getTransaction().commit();
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/EditKysymykset.jsp");
-		request.setAttribute("kysymysentlist", k);
-		try {
-			rd.forward(request, response);
-		} catch (ServletException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		readKysymys();
 	}
 
 	@GET
@@ -157,24 +150,26 @@ public class KysymysService {
 
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		Vastaukset v = em.find(Vastaukset.class, kysymys_id);
+        List<Ehdokas> eList = em.createQuery("select a from ehdokkaat a").getResultList();
+        em.getTransaction().commit();
+		
+		for (int i = 0; i < eList.size(); i++) {
+			em.getTransaction().begin();
+			CompositeKey key = new CompositeKey(kysymys_id,eList.get(i).getEhdokas_id());
+			Vastaukset v = em.find(Vastaukset.class, key);
+			if (v != null) {
+				em.remove(v);
+			}
+			em.getTransaction().commit();
+		}
+		em.getTransaction().begin();
 		Kysymykset k = em.find(Kysymykset.class, kysymys_id);
 		
 		if (k != null) {
 			em.remove(k);
-			em.remove(v);
 		}
 		em.getTransaction().commit();
-		List<Kysymykset> list = em.createQuery("select a from Kysymykset a").getResultList();
-		request.setAttribute("kysymysentlist", list);
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/EditKysymykset.jsp");
-
-		try {
-			rd.forward(request, response);
-		} catch (ServletException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		readKysymys();
 	}
 
 }
