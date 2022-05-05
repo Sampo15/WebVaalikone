@@ -2,6 +2,7 @@ package rest;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,6 +24,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import Data.Ehdokas;
 import Data.Kysymykset;
 import Data.Vastaukset;
 
@@ -53,26 +55,52 @@ public class KysymysService {
 	}
 
 	@POST
-	@Path("/addkysymys")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public void addKysymys(@FormParam("kysymys") String kysymys) {
+    @Path("/addkysymys")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void addKysymys(@FormParam("kysymys") String kysymys) {
 
-		Kysymykset k = new Kysymykset(kysymys);
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(k);
-		em.getTransaction().commit();
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddKysymys.jsp");
-		request.setAttribute("kysymysentlist", k);
-		try {
-			rd.forward(request, response);
-		} catch (ServletException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        Random rn = new Random();
+        Kysymykset k = new Kysymykset(kysymys);
 
-	}
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        List<Ehdokas> list = em.createQuery("select a from ehdokkaat a").getResultList();
+        em.getTransaction().commit();
+
+        em.getTransaction().begin();
+
+        em.persist(k);
+
+        em.getTransaction().commit();
+
+        em.getTransaction().begin();
+        List<Kysymykset> list2 = em.createQuery("select a from Kysymykset a").getResultList();
+        em.getTransaction().commit();
+
+        for (int i = 0; i < list.size(); i++) {
+            int ehdokas_id = list.get(i).getEhdokas_id();
+            int vastaus = rn.nextInt(5) + 1;
+            int kysymys_id = list2.get(list2.size() - 1).getKysymys_id();
+            String kommentti = "ehdokkaan " + ehdokas_id + " vastaus kysymykseen " + kysymys_id;
+            Vastaukset v = new Vastaukset(ehdokas_id, kysymys_id, vastaus, kommentti);
+
+            em.getTransaction().begin();
+
+            em.persist(v);
+
+            em.getTransaction().commit();
+        }
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/AdminPage.jsp");
+
+        try {
+            rd.forward(request, response);
+        } catch (ServletException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
 
 	@POST
 	@Path("/updatekysymys")
