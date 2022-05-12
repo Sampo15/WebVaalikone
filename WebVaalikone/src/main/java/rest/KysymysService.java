@@ -33,7 +33,7 @@ import key.CompositeKey;
  */
 /**
  * @Date 12/05/2022
- * @author Sampo Lappalainen
+ * @author Sampo Lappalainen, Jere Lempinen, Jesse Mustonen
  * @version 1
  *
  */
