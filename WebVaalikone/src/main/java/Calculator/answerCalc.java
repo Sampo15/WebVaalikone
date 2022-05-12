@@ -20,11 +20,11 @@ public class answerCalc {
 		for (int i = 0; i < ehdokas.size(); i++) {
 			ArrayList <Integer> candAnswers = dao.lueVastaukset(ehdokas.get(i).getEhdokas_id());
 			if (candAnswers.size() == dao.countKysymykset()) {
-				System.out.println("Pepu");
+				
 				score = 0;
 				for (int y = 0; y < userAnswers.size(); y++) {
 					if (userAnswers.get(y)!= 3 && candAnswers.get(y)!= 3) {
-						System.out.println("kaka");
+						
 						
 						counted++;
 						score += Math.abs(userAnswers.get(y) - candAnswers.get(y));

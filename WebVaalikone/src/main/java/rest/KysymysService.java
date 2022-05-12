@@ -28,15 +28,31 @@ import Data.Ehdokas;
 import Data.Kysymykset;
 import Data.Vastaukset;
 import key.CompositeKey;
-
+/*
+ * Path annotation for the rest service
+ */
+/**
+ * @Date 12/05/2022
+ * @author Sampo Lappalainen
+ * @version 1
+ *
+ */
 @Path("/kysymysservice")
+
 public class KysymysService {
+	/*
+	 * Creation of EntityMangerFactory and Context annotation for Http request and response
+	 */
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaalikone");
 	@Context
 	HttpServletRequest request;
 	@Context
 	HttpServletResponse response;
 
+	
+	/**
+	 * Reads all the questions from the Kysymykset table in the database using @GET, creates a list from them and sends the list with request to the jsp.
+	 */
 	@GET
 	@Path("/readkysymys")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -55,6 +71,12 @@ public class KysymysService {
 		}
 	}
 
+	
+	
+	/**
+	 * @param kysymys
+	 *  Adds a question to the database from the Form Parameter input using @POST and persist to the Kysymykset database table and generates a random answer for all of the candidates to the Vastaukset database table and sends the added question with request to jsp.
+	 */
 	@POST
     @Path("/addkysymys")
     @Produces(MediaType.APPLICATION_JSON)
@@ -102,7 +124,14 @@ public class KysymysService {
         }
 
     }
+	
+	
 
+	/**
+	 * @param kysymys_id
+	 * @param kysymys
+	 * Updates a question from the database table Kysymykset using Form parameter input with @POST and merge and sends a list with the updated question using the readKysymys method.
+	 */
 	@POST
 	@Path("/updatekysymys")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -121,6 +150,11 @@ public class KysymysService {
 		readKysymys();
 	}
 
+	
+	/**
+	 * @param kysymys_id
+	 * Reads a question from the Kysymykset database table by its question_id with @GET and request to jsp.
+	 */
 	@GET
 	@Path("/readtoupdatekysymys/{kysymys_id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -142,6 +176,12 @@ public class KysymysService {
 
 	}
 
+	
+	
+	/**
+	 * @param kysymys_id
+	 * Deletes a question by its question_id from the database table Kysymykset and Vastaukset with @GET and remove. Sends the updated list using the readKysymys method. 
+	 */
 	@GET
 	@Path("/deletekysymys/{kysymys_id}")
 	@Produces(MediaType.APPLICATION_JSON)
