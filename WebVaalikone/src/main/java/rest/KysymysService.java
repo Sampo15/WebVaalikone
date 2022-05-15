@@ -28,14 +28,16 @@ import Data.Ehdokas;
 import Data.Kysymykset;
 import Data.Vastaukset;
 import key.CompositeKey;
-/*
- * Path annotation for the rest service
- */
+
 /**
  * @Date 12/05/2022
  * @author Sampo Lappalainen, Jere Lempinen, Jesse Mustonen
  * @version 1
- *
+ * 
+ * This is the service class for handling the election compass questions from the vaalikone database
+ */
+/*
+ * Path annotation for the rest service
  */
 @Path("/kysymysservice")
 
@@ -74,8 +76,11 @@ public class KysymysService {
 	
 	
 	/**
-	 * @param kysymys
-	 *  Adds a question to the database from the Form Parameter input using @POST and persist to the Kysymykset database table and generates a random answer for all of the candidates to the Vastaukset database table and sends the added question with request to jsp.
+	 * Adds a question to the database from the Form Parameter input using @POST and persist to the Kysymykset database table and generates a random answer for all of the candidates to the Vastaukset database table and sends the added question with request to jsp.
+	 * 
+	 * @param kysymys formparam for the html input of the question that is being added
+	 * 
+	 *  
 	 */
 	@POST
     @Path("/addkysymys")
@@ -128,9 +133,12 @@ public class KysymysService {
 	
 
 	/**
-	 * @param kysymys_id
-	 * @param kysymys
 	 * Updates a question from the database table Kysymykset using Form parameter input with @POST and merge and sends a list with the updated question using the readKysymys method.
+	 * 
+	 * @param kysymys_id 
+	 * @param kysymys formparam for the html input that is going to be updated
+	 * 
+	 * 
 	 */
 	@POST
 	@Path("/updatekysymys")
@@ -152,8 +160,11 @@ public class KysymysService {
 
 	
 	/**
-	 * @param kysymys_id
-	 * Reads a question from the Kysymykset database table by its question_id with @GET and request to jsp.
+	 *  Reads a question from the Kysymykset database table by its question_id with @GET and request to jsp.
+	 * 
+	 * @param kysymys_id column kysymys_id from the database table Kysymykset to be used as a pathparameter
+	 * 
+	 *
 	 */
 	@GET
 	@Path("/readtoupdatekysymys/{kysymys_id}")
@@ -179,8 +190,10 @@ public class KysymysService {
 	
 	
 	/**
-	 * @param kysymys_id
-	 * Deletes a question by its question_id from the database table Kysymykset and Vastaukset with @GET and remove. Sends the updated list using the readKysymys method. 
+	 *  Deletes a question by its question_id from the database table Kysymykset and Vastaukset with @GET and remove. Sends the updated list using the readKysymys method. 
+	 *  
+	 * @param kysymys_id column kysymys_id from the database table Kysymykset to be used as a pathparameter
+	 *
 	 */
 	@GET
 	@Path("/deletekysymys/{kysymys_id}")

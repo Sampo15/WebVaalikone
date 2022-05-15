@@ -32,7 +32,6 @@ import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
-
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -41,60 +40,100 @@ import Data.Kysymykset;
 import Data.Vastaukset;
 import key.CompositeKey;
 
+/**
+ * @Date 12/05/2022
+ * @author Sampo Lappalainen, Jere Lempinen, Jesse Mustonen
+ * @version 1
+ *
+ */
+
+/*
+ * Path annotation for the rest service
+ */
 @Path("/ehdokasservice")
 public class EhdokasService {
-	
+
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaalikone");
 	@Context
 	HttpServletRequest request;
 	@Context
 	HttpServletResponse response;
-	
+
+	/**
+	 * Uploads a profile picture for a single candidate using @POST and sends it to
+	 * jsp with request.
+	 * 
+	 * @param ehdokas_id
+	 * @param fileInputStream
+	 * @param fileMetaData
+	 * @param sc
+	 * @return
+	 * @throws Exception
+	 * 
+	 * 
+	 */
 	@POST
 	@Path("/lisaakuva/{ehdokas_id}")
-	@Consumes({MediaType.MULTIPART_FORM_DATA})
-	public String uploadFile(@PathParam("ehdokas_id") int ehdokas_id, @FormDataParam("file") InputStream fileInputStream,
-            @FormDataParam("file") FormDataContentDisposition fileMetaData, @Context ServletContext sc) 
-            		throws Exception
-	{
+	@Consumes({ MediaType.MULTIPART_FORM_DATA })
+	public String uploadFile(@PathParam("ehdokas_id") int ehdokas_id,
+			@FormDataParam("file") InputStream fileInputStream,
+			@FormDataParam("file") FormDataContentDisposition fileMetaData, @Context ServletContext sc)
+			throws Exception {
 		EntityManager em = emf.createEntityManager();
-		
-	    String fileName = ehdokas_id + ".png";
 
-	    String UPLOAD_PATH = (System.getProperty("user.dir")) + "\\img\\";
+		String fileName = ehdokas_id + ".png";
 
-	    try{
-	        int read = 0;
-	        byte[] bytes = new byte[1024];
-	 
-	        //OutputStream out = new FileOutputStream(new File(UPLOAD_PATH + "/"+fileMetaData.getFileName()));
-	        OutputStream out = new FileOutputStream(new File(UPLOAD_PATH + fileName));
-		    
-	        while ((read = fileInputStream.read(bytes)) != -1) 
-	        {
-	            out.write(bytes, 0, read);
-	        }
-	        out.flush();
-	        out.close();
-	        
-	    } 
-	    catch (IOException e){
-	        throw new WebApplicationException("Virhe ladattaessa tiedostoa.");
-	    }
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/KuvaLisatty.jsp");
+		String UPLOAD_PATH = (System.getProperty("user.dir")) + "\\img\\";
+
+		try {
+			int read = 0;
+			byte[] bytes = new byte[1024];
+
+			// OutputStream out = new FileOutputStream(new File(UPLOAD_PATH +
+			// "/"+fileMetaData.getFileName()));
+			OutputStream out = new FileOutputStream(new File(UPLOAD_PATH + fileName));
+
+			while ((read = fileInputStream.read(bytes)) != -1) {
+				out.write(bytes, 0, read);
+			}
+			out.flush();
+			out.close();
+
+		} catch (IOException e) {
+			throw new WebApplicationException("Virhe ladattaessa tiedostoa.");
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/KuvaLisatty.jsp");
 		rd.forward(request, response);
-	    return null;
+		return null;
 	}
 
-
+	/**
+	 * Updates a candidates profile information from the database table Ehdokkaat
+	 * using Form parameter input with @POST and merge and sends a list with the
+	 * updated profile information with request to jsp
+	 * 
+	 * @param id          formparam for the hmtl forms input
+	 * @param vaalinro    formparam for the hmtl forms input
+	 * @param etunimi     formparam for the hmtl forms input
+	 * @param sukunimi    formparam for the hmtl forms input
+	 * @param paikkakunta formparam for the hmtl forms input
+	 * @param puolue      formparam for the hmtl forms input
+	 * @param eduskunta   formparam for the hmtl forms input
+	 * @param edistaa     formparam for the hmtl forms input
+	 * @param user        formparam for the hmtl forms input
+	 * @param pass        formparam for the hmtl forms input
+	 * 
+	 * 
+	 */
 	@POST
 	@Path("/updateehdokas")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public void updateEhdokas(@FormParam("ehdokas_id") String id, @FormParam("vaalinro") String vaalinro, @FormParam("etunimi") String etunimi,
-			@FormParam("sukunimi") String sukunimi, @FormParam("paikkakunta") String paikkakunta, @FormParam("puolue") String puolue, @FormParam("eduskunta") String eduskunta,
-			@FormParam("edistaa") String edistaa, @FormParam("ehduser") String user, @FormParam("ehdpass") String pass) {
-		
+	public void updateEhdokas(@FormParam("ehdokas_id") String id, @FormParam("vaalinro") String vaalinro,
+			@FormParam("etunimi") String etunimi, @FormParam("sukunimi") String sukunimi,
+			@FormParam("paikkakunta") String paikkakunta, @FormParam("puolue") String puolue,
+			@FormParam("eduskunta") String eduskunta, @FormParam("edistaa") String edistaa,
+			@FormParam("ehduser") String user, @FormParam("ehdpass") String pass) {
 
 		Ehdokas ehd = new Ehdokas(id, sukunimi, etunimi, puolue, eduskunta, edistaa, paikkakunta, vaalinro, user, pass);
 		EntityManager em = emf.createEntityManager();
@@ -115,7 +154,18 @@ public class EhdokasService {
 		}
 
 	}
-	
+
+	/**
+	 * Reads all of the questions for a single candidate using the @GET and
+	 * ehdokas_id as a pathparam to identify a single candidate, then sends it with
+	 * request to jsp.
+	 * 
+	 * 
+	 * @param ehdokas_id column ehdokas_id from the database table ehdokkaat to be
+	 *                   used as a pathparameter
+	 * 
+	 *
+	 */
 	@GET
 	@Path("/readkysymys/{ehdokas_id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -131,6 +181,16 @@ public class EhdokasService {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * @param ehdokas_id column ehdokas_id from the database table ehdokkaat to be
+	 *                   used as a pathparameter.
+	 * 
+	 *                   Saves a single candidates answers to election compass
+	 *                   questions, to the vastaukset database table, using
+	 *                   ehdokas_id as a pathparam to be used to identify the
+	 *                   candidate, then sending the answers with request.
+	 */
 	@GET
 	@Path("/savevastaus/{ehdokas_id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -142,19 +202,20 @@ public class EhdokasService {
 			CompositeKey key = new CompositeKey(list.get(y).getKysymys_id(), ehdokas_id);
 			em.getTransaction().begin();
 			Vastaukset v = em.find(Vastaukset.class, key);
-			
-			if (v==null) {
+
+			if (v == null) {
 				em.getTransaction().commit();
 				break;
 			}
-			em.remove(v); 
+			em.remove(v);
 			em.getTransaction().commit();
 			y++;
 		}
-		
-		for(int i = 0; i< list.size(); i++) {
+
+		for (int i = 0; i < list.size(); i++) {
 			String kommentti = "ehdokkaan " + ehdokas_id + " vastaus kysymykseen " + list.get(i).getKysymys_id();
-			Vastaukset a = new Vastaukset(ehdokas_id, list.get(i).getKysymys_id(), Integer.parseInt(request.getParameter("vastaus"+list.get(i).getKysymys_id())), kommentti);
+			Vastaukset a = new Vastaukset(ehdokas_id, list.get(i).getKysymys_id(),
+					Integer.parseInt(request.getParameter("vastaus" + list.get(i).getKysymys_id())), kommentti);
 			em.getTransaction().begin();
 			em.persist(a);
 			em.getTransaction().commit();
@@ -167,8 +228,12 @@ public class EhdokasService {
 			e.printStackTrace();
 		}
 	}
-	
-	public List <Kysymykset> readKysymykset() {
+
+	/**
+	 * @return Reads all the questions from the database table Kysymykset into a
+	 *         list and returns the list
+	 */
+	public List<Kysymykset> readKysymykset() {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		List<Kysymykset> list = em.createQuery("select a from Kysymykset a").getResultList();
